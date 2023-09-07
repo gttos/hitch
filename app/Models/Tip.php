@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\Uid\Ulid;
 
-class Tag extends Model
+class Tip extends Model
 {
     use HasFactory;
     use HasUlids;
@@ -28,6 +28,6 @@ class Tag extends Model
     ];
 
     public function cards() {
-        return $this->belongsToMany(Card::class);
+        return $this->hasMany(Card::class);
     }
 }

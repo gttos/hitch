@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
+use App\Models\Card;
 use Illuminate\Database\Seeder;
 
-class PostSeeder extends Seeder
+class CardSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Post::factory(20)->create();
+        Card::factory(20)->create();
     }
 }
