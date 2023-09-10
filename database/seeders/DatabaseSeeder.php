@@ -20,16 +20,15 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::factory()
-            ->count(2)
+            ->count(5)
             ->sequence(fn($seq) => ['email' => 'user' . $seq->index . '@email.com'])
             ->create();
 
         $this->call([
-            TipSeeder::class,
-            CardSeeder::class,
+            CategorySeeder::class,
+            PostSeeder::class,
             TagSeeder::class,
-            CardTagSeeder::class,
-            RateSeeder::class
+            PostTagSeeder::class
         ]);
     }
 }

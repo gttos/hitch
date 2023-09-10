@@ -24,10 +24,10 @@ class Tag extends Model
     }
 
     protected $fillable = [
-        'name'
+        'tag'
     ];
 
-    public function cards() {
-        return $this->belongsToMany(Card::class);
+    public function posts() {
+        return $this->belongsToMany(Post::class, 'posts', 'post_id');
     }
 }
