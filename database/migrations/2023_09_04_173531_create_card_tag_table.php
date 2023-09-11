@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('card_tag', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             $table->foreignUlid('card_id');
             $table->foreignUlid('tag_id');
             $table->timestamps();

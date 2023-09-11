@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
-    public function googleStore(Request $request): RedirectResponse
+    public function googleStore(): RedirectResponse
     {
         $googleUser = Socialite::driver('google')->stateless()->user();
 

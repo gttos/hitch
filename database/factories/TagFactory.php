@@ -18,7 +18,7 @@ class TagFactory extends Factory
     {
         return [
             'id' => fake()->regexify('[A-Za-z0-9]{' . 26 . '}'),
-            'name' => fake()->word()
+            'tag' => fake()->word()
         ];
     }
 }

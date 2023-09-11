@@ -25,7 +25,7 @@ class Card extends Model
 
     protected $fillable = [
         'title',
-        'description',
+        'content',
         'rate',
         'votes',
         'user_id',
@@ -36,9 +36,9 @@ class Card extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function tip()
+    public function category()
     {
-        return $this->belongsTo(Tip::class, 'tip_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function tags() {

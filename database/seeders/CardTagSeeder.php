@@ -13,6 +13,6 @@ class CardTagSeeder extends Seeder
      */
     public function run(): void
     {
-        Card::all()->map(fn($card) => $card->tags()->attach(Tag::all()->random(1)));
+        Card::all()->map(fn($card) => $card->tags()->attach(Tag::all()->random(2)));
     }
 }
