@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Tip;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class TipController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $tips = Tip::all();
+        return view('blog.index', ['tips' => $tips]);
     }
 
     /**
@@ -34,15 +35,16 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(string $name)
     {
-        //
+        $tip = Tip::where('name', $name)->first();
+        return view('blog.show', ['tip' => $tip]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Tip $Tip)
     {
         //
     }
@@ -50,7 +52,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Tip $Tip)
     {
         //
     }
@@ -58,7 +60,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Tip $Tip)
     {
         //
     }

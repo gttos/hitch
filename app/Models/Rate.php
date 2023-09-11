@@ -7,27 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\Uid\Ulid;
 
-class Category extends Model
+class Rate extends Model
 {
     use HasFactory;
-    use HasUlids;
 
     protected $primaryKey = 'id';
-    public function newUniqueId(): string
-    {
-        return Ulid::generate();
-    }
-
-    public function uniqueIds(): array
-    {
-        return ['id'];
-    }
 
     protected $fillable = [
-        'name'
+        'value'
     ];
-
-    public function posts() {
-        return $this->hasMany(Post::class);
-    }
 }
