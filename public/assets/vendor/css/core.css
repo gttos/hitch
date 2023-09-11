@@ -2829,8 +2829,6 @@ textarea.form-control-lg {
   margin-left: 0.5em;
   vertical-align: middle;
   content: "";
-}
-.dropstart .dropdown-toggle::after {
   display: none;
 }
 .dropstart .dropdown-toggle::before {

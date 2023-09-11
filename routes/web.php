@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BlogController;
@@ -13,15 +13,23 @@ use App\Http\Controllers\CategoryController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 $controller_path = 'App\Http\Controllers';
 
+Route::get('/dashboard', [\App\Http\Controllers\dashboard\Analytics::class, 'index'])->middleware(['auth', 'verified'])->name('profile.edit');
+Route::get('/', [\App\Http\Controllers\Web\Index::class, 'index'])->name('web.index');
+Route::get('/profile', [\App\Http\Controllers\Web\Profile::class, 'show'])->name('web.profile');
+
 // Main Page Route
-Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
+
 
 // layout
 Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
@@ -84,28 +92,16 @@ Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\Horizon
 // tables
 Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
 
-
 Route::get('/google-auth/redirect', function () {
     return Socialite::driver('google')->redirect();
 });
 
 Route::get('/google-auth/callback', [RegisteredUserController::class, 'googleStore']);
+//
+//Route::middleware('auth')->group(function () {
+//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//});
 
-Route::controller(CategoryController::class)->group(function () {
-    Route::get('/tips', 'index');
-    Route::get('/tips/{name}', 'show')->name('category.show');
-});
-
-Route::get('/blog', [BlogController::class, 'index']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-//require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';
