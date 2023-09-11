@@ -1,4 +1,4 @@
-@extends('template/layouts/commonMaster' )
+@extends('layouts/commonMaster' )
 
 @section('layoutContent')
 

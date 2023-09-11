@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_tag', function (Blueprint $table) {
-            $table->ulid('id');
-            $table->foreignUlid('post_id');
-            $table->foreignUlid('tag_id');
+        Schema::create('rates', function (Blueprint $table) {
+            $table->id();
+            $table->smallInteger('value');
+            $table->ulid('card_id');
+            $table->ulid('user_id');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_tag');
+        Schema::dropIfExists('rate');
     }
 };

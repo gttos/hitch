@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\Uid\Ulid;
 
-class Post extends Model
+class Card extends Model
 {
     use HasFactory;
     use HasUlids;
@@ -26,8 +26,10 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
+        'rate',
+        'votes',
         'user_id',
-        'category_id'
+        'tip_id'
     ];
 
     public function owner() {
@@ -36,10 +38,14 @@ class Post extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function tags() {
-        return $this->belongsToMany(Tag::class, 'tags', 'tag_id');
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function rates() {
+        return $this->belongsToMany(Rate::class);
     }
 }

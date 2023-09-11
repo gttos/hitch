@@ -19,19 +19,30 @@
 
     <!-- Examples -->
     <div class="row mb-5">
-        @foreach($posts as $post)
+        @foreach($cards as $card)
             <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="card p-3">
                     <figure class="p-3 mb-0">
                         <blockquote class="blockquote">
-                            <p>{{ $post->title }}</p>
+                            <p>{{ $card->title }}</p>
                         </blockquote>
                         <figcaption class="blockquote-footer mb-0 text-muted">
-                            {{$post->content}}</cite>
+                            <cite>{{ $card->content }}</cite>
                         </figcaption>
                     </figure>
                 </div>
             </div>
+        @endforeach
+        @foreach($cards as $card)
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $card->title }}</h5>
+                            <p class="card-text">{{ $card->content }}</p>
+                            <p class="card-text"><small class="text-muted">Tip de {{ mb_strtoupper($card->category->name) }} - {{ $card->votes }} Votos - {{ $card->rate }} Estrellas </small></p>
+                        </div>
+                    </div>
+                </div>
         @endforeach
     </div>
     <!--/ Card layout -->

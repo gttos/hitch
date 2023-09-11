@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Models\Card;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function show()
     {
-        $posts = Post::all();
+        $cards = Card::all();
 
-        return view('guest.dashboard', ['posts' => $posts]);
+        return view('guest.dashboard', ['cards' => $cards]);
     }
 }

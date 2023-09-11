@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\Card;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tag>
  */
-class PostFactory extends Factory
+class RateFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,11 +19,9 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => fake()->regexify('[A-Za-z0-9]{' . 26 . '}'),
-            'title' => fake()->sentence(),
-            'content' => fake()->text(),
+            'value' => fake()->numberBetween(0,5),
+            'card_id' => Card::all()->count() ? Card::all()->random()->id : 0,
             'user_id' => User::all()->count() ? User::all()->random()->id : 0,
-            'category_id' => Category::all()->count() ? Category::all()->random()->id : 0
         ];
     }
 }

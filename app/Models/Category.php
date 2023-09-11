@@ -27,7 +27,7 @@ class Category extends Model
         'name'
     ];
 
-    public function posts() {
-        return $this->hasMany(Post::class);
+    public function cards() {
+        return $this->hasMany(Card::class);
     }
 }
