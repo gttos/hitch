@@ -9,6 +9,6 @@ class InputGroups extends Controller
 {
   public function index()
   {
-    return view('content.form-elements.forms-input-groups');
+    return view('template.content.form-elements.forms-input-groups');
   }
 }

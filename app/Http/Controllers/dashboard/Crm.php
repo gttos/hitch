@@ -9,6 +9,6 @@ class Crm extends Controller
 {
   public function index()
   {
-    return view('content.dashboard.dashboards-crm');
+    return view('template.content.dashboard.dashboards-crm');
   }
 }

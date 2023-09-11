@@ -9,6 +9,6 @@ class Validation extends Controller
 {
   public function index()
   {
-    return view('content.form-validation.form-validation');
+    return view('template.content.form-validation.form-validation');
   }
 }

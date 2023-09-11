@@ -9,6 +9,6 @@ class TextDivider extends Controller
 {
   public function index()
   {
-    return view('content.extended-ui.extended-ui-text-divider');
+    return view('template.content.extended-ui.extended-ui-text-divider');
   }
 }

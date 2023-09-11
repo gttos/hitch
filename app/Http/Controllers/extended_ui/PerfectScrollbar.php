@@ -9,6 +9,6 @@ class PerfectScrollbar extends Controller
 {
   public function index()
   {
-    return view('content.extended-ui.extended-ui-perfect-scrollbar');
+    return view('template.content.extended-ui.extended-ui-perfect-scrollbar');
   }
 }

@@ -9,6 +9,6 @@ class Dropdowns extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-dropdowns');
+    return view('template.content.user-interface.ui-dropdowns');
   }
 }

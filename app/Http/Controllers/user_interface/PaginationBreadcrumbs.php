@@ -9,6 +9,6 @@ class PaginationBreadcrumbs extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-pagination-breadcrumbs');
+    return view('template.content.user-interface.ui-pagination-breadcrumbs');
   }
 }

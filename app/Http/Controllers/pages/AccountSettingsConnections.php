@@ -9,6 +9,6 @@ class AccountSettingsConnections extends Controller
 {
   public function index()
   {
-    return view('content.pages.pages-account-settings-connections');
+    return view('template.content.pages.pages-account-settings-connections');
   }
 }

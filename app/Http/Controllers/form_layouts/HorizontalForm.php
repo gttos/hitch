@@ -9,6 +9,6 @@ class HorizontalForm extends Controller
 {
   public function index()
   {
-    return view('content.form-layout.form-layouts-horizontal');
+    return view('template.content.form-layout.form-layouts-horizontal');
   }
 }

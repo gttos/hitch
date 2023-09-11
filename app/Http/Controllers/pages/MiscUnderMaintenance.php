@@ -9,6 +9,6 @@ class MiscUnderMaintenance extends Controller
 {
   public function index()
   {
-    return view('content.pages.pages-misc-under-maintenance');
+    return view('template.content.pages.pages-misc-under-maintenance');
   }
 }

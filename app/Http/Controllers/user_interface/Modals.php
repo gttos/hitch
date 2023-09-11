@@ -9,6 +9,6 @@ class Modals extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-modals');
+    return view('template.content.user-interface.ui-modals');
   }
 }

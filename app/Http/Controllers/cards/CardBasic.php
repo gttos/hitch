@@ -9,6 +9,6 @@ class CardBasic extends Controller
 {
   public function index()
   {
-    return view('content.cards.cards-basic');
+    return view('template.content.cards.cards-basic');
   }
 }

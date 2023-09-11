@@ -9,6 +9,6 @@ class Buttons extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-buttons');
+    return view('template.content.user-interface.ui-buttons');
   }
 }

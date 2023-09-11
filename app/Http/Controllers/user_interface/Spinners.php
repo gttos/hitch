@@ -9,6 +9,6 @@ class Spinners extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-spinners');
+    return view('template.content.user-interface.ui-spinners');
   }
 }

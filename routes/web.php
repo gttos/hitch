@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -24,7 +25,7 @@ Route::get('/', function () {
 
 $controller_path = 'App\Http\Controllers';
 
-Route::get('/dashboard', [\App\Http\Controllers\dashboard\Analytics::class, 'index'])->middleware(['auth', 'verified'])->name('profile.edit');
+
 Route::get('/', [\App\Http\Controllers\Web\Index::class, 'index'])->name('web.index');
 Route::get('/profile', [\App\Http\Controllers\Web\Profile::class, 'show'])->name('web.profile');
 
@@ -98,10 +99,12 @@ Route::get('/google-auth/redirect', function () {
 
 Route::get('/google-auth/callback', [RegisteredUserController::class, 'googleStore']);
 //
-//Route::middleware('auth')->group(function () {
-//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//});
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'show'])->name('auth.dashboard');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 require __DIR__.'/auth.php';

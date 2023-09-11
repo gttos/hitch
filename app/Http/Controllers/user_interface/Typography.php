@@ -9,6 +9,6 @@ class Typography extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-typography');
+    return view('template.content.user-interface.ui-typography');
   }
 }

@@ -9,6 +9,6 @@ class TabsPills extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-tabs-pills');
+    return view('template.content.user-interface.ui-tabs-pills');
   }
 }

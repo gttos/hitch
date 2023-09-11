@@ -9,6 +9,6 @@ class LoginBasic extends Controller
 {
   public function index()
   {
-    return view('content.authentications.auth-login-basic');
+    return view('template.content.authentications.auth-login-basic');
   }
 }

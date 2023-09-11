@@ -9,6 +9,6 @@ class Alerts extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-alerts');
+    return view('template.content.user-interface.ui-alerts');
   }
 }

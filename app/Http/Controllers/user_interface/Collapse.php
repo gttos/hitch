@@ -9,6 +9,6 @@ class Collapse extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-collapse');
+    return view('template.content.user-interface.ui-collapse');
   }
 }

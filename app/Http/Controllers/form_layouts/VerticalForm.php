@@ -9,6 +9,6 @@ class VerticalForm extends Controller
 {
   public function index()
   {
-    return view('content.form-layout.form-layouts-vertical');
+    return view('template.content.form-layout.form-layouts-vertical');
   }
 }

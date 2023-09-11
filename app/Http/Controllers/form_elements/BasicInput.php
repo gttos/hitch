@@ -9,6 +9,6 @@ class BasicInput extends Controller
 {
   public function index()
   {
-    return view('content.form-elements.forms-basic-inputs');
+    return view('template.content.form-elements.forms-basic-inputs');
   }
 }

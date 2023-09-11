@@ -9,6 +9,6 @@ class Badges extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-badges');
+    return view('template.content.user-interface.ui-badges');
   }
 }

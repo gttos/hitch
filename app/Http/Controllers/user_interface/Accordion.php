@@ -9,6 +9,6 @@ class Accordion extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-accordion');
+    return view('template.content.user-interface.ui-accordion');
   }
 }

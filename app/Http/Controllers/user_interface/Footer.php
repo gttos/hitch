@@ -9,6 +9,6 @@ class Footer extends Controller
 {
   public function index()
   {
-    return view('content.user-interface.ui-footer');
+    return view('template.content.user-interface.ui-footer');
   }
 }
