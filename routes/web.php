@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\Auth\DashboardController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\DashboardController as AuthDashboardController;
+use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\ProfileController;;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,18 +18,10 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 $controller_path = 'App\Http\Controllers';
 
-
-Route::get('/', [\App\Http\Controllers\Web\Index::class, 'index'])->name('web.index');
-Route::get('/profile', [\App\Http\Controllers\Web\Profile::class, 'show'])->name('web.profile');
-
-// Main Page Route
-
+// GUEST Routes
+Route::get('/', [GuestDashboardController::class, 'show'])->name('guest.dashboard');
 
 // layout
 Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
@@ -100,11 +91,12 @@ Route::get('/google-auth/redirect', function () {
 Route::get('/google-auth/callback', [RegisteredUserController::class, 'googleStore']);
 //
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'show'])->name('auth.dashboard');
+    Route::get('/dashboard', [AuthDashboardController::class, 'show'])->name('auth.dashboard');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('auth.profile-show');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('auth.profile-edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('auth.profile-update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('auth.profile-destroy');
 });
 
 require __DIR__.'/auth.php';

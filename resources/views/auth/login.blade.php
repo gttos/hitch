@@ -1,4 +1,4 @@
-@extends('layouts/contentNavbarLayout/blankLayout')
+@extends('layouts/blankLayout')
 
 @section('title', 'Login Basic - Pages')
 

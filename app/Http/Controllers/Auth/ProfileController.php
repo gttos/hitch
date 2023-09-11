@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Profile extends Controller
+class ProfileController extends Controller
 {
     public function show()
     {

@@ -100,10 +100,13 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="dropdown-divider"></div>
               </li>
               <li>
-                <a class="dropdown-item" href="javascript:void(0);">
-                  <i class='bx bx-power-off me-2'></i>
-                  <span class="align-middle">Log Out</span>
-                </a>
+                  <form method="POST" action="{{ route('logout') }}">
+                      @csrf
+                      <a class="dropdown-item" href="javascript:void(0);">
+                          <i class='bx bx-power-off me-2'></i>
+                          <span class="align-middle">Log Out</span>
+                      </a>
+                  </form>
               </li>
             </ul>
           </li>
