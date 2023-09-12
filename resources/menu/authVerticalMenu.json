@@ -1,0 +1,28 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Web",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "web"
+    },
+    {
+      "url": "/auth/dashboard",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "dashboard"
+    },
+    {
+      "name": "Usuarios",
+      "url": "/auth/users",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "users"
+    },
+    {
+      "name": "Cards",
+      "icon": "menu-icon tf-icons bx bx-layout",
+      "slug": "cards",
+      "url": "/auth/cards"
+    }
+  ]
+}
