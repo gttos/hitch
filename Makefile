@@ -5,6 +5,8 @@ SHELL = /bin/bash
 
 ###### 	NOT RUN IN PROD
 fresh-start: erase cache-folders build-base composer-install recreate-db
+#	mv docker-compose.prod.yml docker-compose.yml
+#	docker-compose down --volumes
 ###### 	NOT RUN IN PROD
 
 restart: cache-folders composer-install restart-db
