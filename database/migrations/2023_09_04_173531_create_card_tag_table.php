@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('id');
             $table->foreignUlid('card_id');
             $table->foreignUlid('tag_id');
-            $table->timestamps();
         });
     }
 

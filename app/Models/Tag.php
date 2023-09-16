@@ -9,8 +9,7 @@ use Symfony\Component\Uid\Ulid;
 
 class Tag extends Model
 {
-    use HasFactory;
-    use HasUlids;
+    use HasFactory, HasUlids;
 
     protected $primaryKey = 'id';
     public function newUniqueId(): string

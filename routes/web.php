@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\Auth\CardController;
 use App\Http\Controllers\Auth\DashboardController as AuthDashboardController;
-use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Guest\TipsController;
+use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -23,7 +24,32 @@ $controller_path = 'App\Http\Controllers';
 
 // GUEST Routes
 Route::get('/', [GuestDashboardController::class, 'show'])->name('guest.dashboard');
+Route::get('/tips/{name}', [TipsController::class, 'show'])->name('guest.tip-show');
 
+Route::get('/google-auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+Route::get('/google-auth/callback', [RegisteredUserController::class, 'googleStore']);
+
+// AUTH Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/auth/dashboard', [AuthDashboardController::class, 'show'])->name('auth.dashboard');
+
+    Route::get('/auth/users', [UserController::class, 'index'])->name('auth.user-index');
+
+    Route::get('/auth/cards', [CardController::class, 'index'])->name('auth.card-index');
+    Route::get('/auth/cards/create', [CardController::class, 'create'])->name('auth.card-create');
+    Route::post('/auth/cards', [CardController::class, 'store'])->name('auth.card-store');
+    Route::get('/auth/cards/edit/{id}', [CardController::class, 'edit'])->name('auth.card-edit');
+    Route::patch('/auth/cards/{id}', [CardController::class, 'update'])->name('auth.card-update');
+    Route::delete('/auth/cards/{id}', [CardController::class, 'destroy'])->name('auth.card-delete');
+
+    Route::get('/auth/profile', [UserController::class, 'edit'])->name('auth.user-edit');
+    Route::patch('/auth/profile', [UserController::class, 'update'])->name('auth.user-update');
+    Route::delete('/auth/profile', [UserController::class, 'destroy'])->name('auth.user-destroy');
+});
+
+// TEMPLATE
 // layout
 Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', $controller_path . '\layouts\WithoutNavbar@index')->name('layouts-without-navbar');
@@ -84,24 +110,5 @@ Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\Horizon
 
 // tables
 Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
-
-Route::get('/google-auth/redirect', function () {
-    return Socialite::driver('google')->redirect();
-});
-
-Route::get('/google-auth/callback', [RegisteredUserController::class, 'googleStore']);
-
-Route::middleware('auth')->group(function () {
-    Route::get('/auth/dashboard', [AuthDashboardController::class, 'show'])->name('auth.dashboard');
-
-    Route::get('/auth/users', [UserController::class, 'index'])->name('auth.user-index');
-
-    Route::get('/auth/cards', [CardController::class, 'index'])->name('auth.card-index');
-    Route::get('/auth/cards/{id}', [CardController::class, 'edit'])->name('auth.card-edit');
-
-    Route::get('/auth/profile', [UserController::class, 'edit'])->name('auth.user-edit');
-    Route::patch('/auth/profile', [UserController::class, 'update'])->name('auth.user-update');
-    Route::delete('/auth/profile', [UserController::class, 'destroy'])->name('auth.user-destroy');
-});
 
 require __DIR__.'/auth.php';

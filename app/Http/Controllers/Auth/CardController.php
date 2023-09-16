@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Card;
 use App\Models\Category;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class CardController extends Controller
 {
@@ -15,7 +18,7 @@ class CardController extends Controller
     public function index()
     {
         $cards = Card::all();
-        return view('auth.card-index', ['cards' => $cards]);
+        return view('auth.card.card-index', ['cards' => $cards]);
     }
 
     /**
@@ -23,7 +26,8 @@ class CardController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('auth.card.card-create', ['categories' => $categories]);
     }
 
     /**
@@ -31,16 +35,23 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'info' => ['required', 'string', 'max:1000'],
+            'category_id' => ['required', 'string']
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $name)
-    {
-        $category = Card::where('name', $name)->first();
-        return view('blog.show', ['category' => $category]);
+        $card = Card::create([
+            'title' => $request->title,
+            'info' => $request->info,
+            'user_id' => auth()->user()->getAuthIdentifier(),
+            'category_id' => $request->category_id,
+            'tag_id' => 1
+        ]);
+
+        event(new Registered($card));
+
+        return Redirect::route('auth.card-index');
     }
 
     /**
@@ -50,7 +61,7 @@ class CardController extends Controller
     {
         $card = Card::where('id', $id)->first();
         $categories = Category::all();
-        return view('auth.card-edit', [
+        return view('auth.card.card-edit', [
             'card' => $card,
             'categories' => $categories
         ]);
@@ -59,16 +70,34 @@ class CardController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $Category)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'info' => ['required', 'string', 'max:1000'],
+            'category_id' => ['required', 'string']
+        ]);
+
+        $card = Card::find($id);
+
+        $card->update([
+            'title' => $request->title,
+            'info' => $request->info,
+            'category_id' => $request->category_id
+        ]);
+
+        return Redirect::route('auth.card-index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $Category)
+    public function destroy(string $cardId)
     {
-        //
+        $card = Card::where('id', $cardId)->first();
+
+        $card->delete();
+
+        return Redirect::route('auth.card-index');
     }
 }

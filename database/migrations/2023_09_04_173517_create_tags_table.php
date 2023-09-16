@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->ulid('id');
             $table->string('tag');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

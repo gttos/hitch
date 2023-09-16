@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guest;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class TipsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('blog.index', ['categories' => $categories]);
     }
 
     /**
@@ -38,7 +37,10 @@ class CategoryController extends Controller
     public function show(string $name)
     {
         $category = Category::where('name', $name)->first();
-        return view('blog.show', ['category' => $category]);
+        return view('guest.tip-show', [
+            'category' => $category,
+            'cards' => $category->cards
+        ]);
     }
 
     /**

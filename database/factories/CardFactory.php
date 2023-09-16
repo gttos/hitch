@@ -21,7 +21,7 @@ class CardFactory extends Factory
         return [
             'id' => fake()->regexify('[A-Za-z0-9]{' . 26 . '}'),
             'title' => fake()->sentence(),
-            'content' => fake()->text(),
+            'info' => fake()->text(),
             'rate' => fake()->numberBetween(1,5),
             'votes' => fake()->numberBetween(1,350),
             'user_id' => User::all()->count() ? User::all()->random()->id : 0,

@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->ulid('id');
             $table->string('title');
-            $table->text('content');
+            $table->text('info');
             $table->smallInteger('rate')->nullable();
             $table->integer('votes')->nullable();
             $table->foreignUlid('user_id');
             $table->foreignUlid('category_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

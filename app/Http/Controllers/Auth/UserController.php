@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('auth.user-index', [
+        return view('auth.user.user-index', [
             'users' => $users
         ]);
     }
@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
-        return view('auth.user-edit', [
+        return view('auth.user.user-edit', [
             'user' => Auth::user(),
         ]);
     }
