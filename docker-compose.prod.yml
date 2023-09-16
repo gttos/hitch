@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: HITCH-APP
     build:
       context: ./docker/8.2
       dockerfile: Dockerfile
@@ -25,6 +26,7 @@ services:
       - mysql
       - redis
   mysql:
+    container_name: HITCH-DB
     image: 'mysql/mysql-server:8.0'
     ports:
       - '${FORWARD_DB_PORT:-3306}:3306'
@@ -48,6 +50,7 @@ services:
       retries: 3
       timeout: 5s
   redis:
+    container_name: HITCH-REDIS
     image: 'redis:alpine'
     ports:
       - '${FORWARD_REDIS_PORT:-6379}:6379'
