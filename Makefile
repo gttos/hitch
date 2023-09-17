@@ -58,4 +58,4 @@ test:
 	docker exec $(PHP_CONTAINER_NAME) ./vendor/bin/phpunit
 
 sleep:
-	timeout 300
+	sleep 300
