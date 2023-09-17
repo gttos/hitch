@@ -4,18 +4,17 @@ REDIS_CONTAINER_NAME = HITCH-REDIS
 SHELL = /bin/bash
 
 ###### 	NOT RUN IN PROD
-fresh-start: prune cache-folders composer-install refresh-db
+fresh-start: prune cache-folders re-build composer-install sleep refresh-db
 ###### 	NOT RUN IN PROD
 
-restart: cache-folders composer-install refresh-db
+restart: cache-folders up composer-install sleep refresh-db
 
 erase:
+	docker-compose down -v --remove-orphans
 	docker-compose down --volumes
-	docker-compose down -v --remove-orphans;
 	truncate -s 0 ./var/log/*.log
 
 prune: erase
-	docker-compose down --volumes
 	docker system prune --volumes
 	docker image prune --all
 
@@ -57,3 +56,6 @@ clear-cache:
 
 test:
 	docker exec $(PHP_CONTAINER_NAME) ./vendor/bin/phpunit
+
+sleep:
+	timeout 300
