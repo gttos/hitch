@@ -63,7 +63,7 @@
             @if(auth()->user()->is_admin)
                 <div class="col-sm-6 col-lg-4 mb-4">
                     <div class="card p-3">
-                        <a class="dropdown-item text-end" href="{{ route('auth.card-create') }}">
+                        <a class="dropdown-item text-center" href="{{ route('auth.card-create') }}">
                             <i class="bx bx-plus me-1"></i>Agregar
                         </a>
                     </div>
