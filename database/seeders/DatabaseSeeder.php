@@ -18,18 +18,18 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
-        User::factory()
-            ->count(5)
-            ->sequence(fn($seq) => ['email' => 'user' . $seq->index . '@email.com'])
-            ->create();
+//
+//        User::factory()
+//            ->count(5)
+//            ->sequence(fn($seq) => ['email' => 'user' . $seq->index . '@email.com'])
+//            ->create();
 
         $this->call([
             CategorySeeder::class,
-            CardSeeder::class,
-            TagSeeder::class,
-            CardTagSeeder::class,
-            RateSeeder::class
+//            CardSeeder::class,
+//            TagSeeder::class,
+//            CardTagSeeder::class,
+//            RateSeeder::class
         ]);
     }
 }
