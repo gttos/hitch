@@ -24,7 +24,7 @@
         <div class="layout-container">
 
             @if ($isMenu)
-                @include('guest/layouts/sections/menu/guestVerticalMenu')
+                @include('guest.layouts.sections.menu.guestMenu')
             @endif
 
 

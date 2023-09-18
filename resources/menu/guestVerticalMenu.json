@@ -1,12 +1,6 @@
 {
   "menu": [
     {
-      "url": "/login",
-      "name": "Login",
-      "icon": "menu-icon tf-icons bx bx-home-circle",
-      "slug": "login"
-    },
-    {
       "name": "Tips",
       "icon": "menu-icon tf-icons bx bx-layout",
       "slug": "layouts",

@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::GUEST_HOME);
     }
 
     public function googleStore(): RedirectResponse
@@ -68,6 +68,10 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        if ($user->is_admin){
+            return redirect(RouteServiceProvider::AUTH_HOME);
+        }
+
+        return redirect(RouteServiceProvider::GUEST_HOME);
     }
 }
