@@ -19,6 +19,12 @@
       "slug": "users"
     },
     {
+      "name": "Categorias",
+      "icon": "menu-icon tf-icons bx bx-layout",
+      "slug": "categorias",
+      "url": "/auth/categories"
+    },
+    {
       "name": "Cards",
       "icon": "menu-icon tf-icons bx bx-layout",
       "slug": "cards",

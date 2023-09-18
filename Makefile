@@ -51,6 +51,9 @@ refresh-db:
 seed-db:
 	docker exec $(PHP_CONTAINER_NAME) php artisan db:seed
 
+migrate-db:
+	docker exec $(PHP_CONTAINER_NAME) php artisan migrate
+
 clear-cache:
 	docker exec $(PHP_CONTAINER_NAME) php artisan optimize:clear
 

@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->primary('id');
             $table->ulid('id');
-            $table->string('title');
-            $table->text('info');
-            $table->smallInteger('rate')->nullable();
-            $table->integer('votes')->nullable();
-            $table->foreignUlid('user_id');
-            $table->foreignUlid('category_id');
+            $table->string('name');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('categories');
     }
 };
