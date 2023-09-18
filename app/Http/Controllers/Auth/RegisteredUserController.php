@@ -58,7 +58,9 @@ class RegisteredUserController extends Controller
         $user = User::updateOrCreate([
             'google_id' => $googleUser->id,
         ], [
-            'name' => $googleUser->name,
+            'firstname' => explode(' ', $googleUser->name)[0],
+            'lastname' =>explode(' ', $googleUser->name)[1],
+            'username' => $googleUser->nickname,
             'email' => $googleUser->email
         ]);
 

@@ -14,7 +14,7 @@ class UserController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function index(Request $request)
+    public function index()
     {
         $users = User::all();
 

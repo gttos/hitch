@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use App\Models\Card;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -12,6 +13,8 @@ class DashboardController extends Controller
     {
         $cards = Card::all();
 
-        return view('guest.dashboard', ['cards' => $cards]);
+        return view('guest.dashboard', [
+            'cards' => $cards
+        ]);
     }
 }

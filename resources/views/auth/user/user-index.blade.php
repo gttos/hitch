@@ -16,36 +16,30 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Client</th>
-                    <th>Users</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Admin</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                 @foreach( $users as $user )
                     <tr>
-                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
                         <td>
-                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                    <img src="{{asset('assets/img/avatars/5.png')}}" alt="Avatar"
-                                         class="rounded-circle">
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                    <img src="{{asset('assets/img/avatars/6.png')}}" alt="Avatar"
-                                         class="rounded-circle">
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    class="avatar avatar-xs pull-up" title="Christina Parker">
-                                    <img src="{{asset('assets/img/avatars/7.png')}}" alt="Avatar"
-                                         class="rounded-circle">
-                                </li>
-                            </ul>
+                            @if( $user->username )
+                                <span class="badge bg-label-secondary me-1">{{ $user->username }}</span>
+                            @else
+                                <span class="badge bg-label-secondary me-1">NO</span>
+                            @endif
                         </td>
-                        <td><span class="badge bg-label-primary me-1">Active</span></td>
+                        <td>
+                            @if( $user->is_admin )
+                                <span class="badge bg-label-primary me-1">YES</span>
+                            @else
+                                <span class="badge bg-label-secondary me-1">NO</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
