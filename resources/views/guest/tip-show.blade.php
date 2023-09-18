@@ -30,20 +30,46 @@
                             <cite>{{ $card->info }}</cite>
                         </figcaption>
                     </figure>
+                    @guest()
+                        <a class="dropdown-item text-end" href="#">
+                            <i class="bx bxs-star me-1"></i>
+                            <i class="bx bxs-star me-1"></i>
+                            <i class="bx bxs-star me-1"></i>
+                            <i class="bx bxs-star-half me-1"></i>
+                            <i class="bx bx-star me-1"></i>
+                            56 Votos
+                        </a>
+                    @endguest
+                    @auth()
+                        @if(auth()->user()->is_admin)
+                            <a class="dropdown-item text-end" href="{{ route('auth.card-edit', $card->id) }}">
+                                <i class="bx bx-edit-alt me-1"></i>Editar
+                            </a>
+                        @else
+                            <a class="dropdown-item text-end" href="#">
+                                <i class="bx bx-star me-1"></i>
+                                <i class="bx bx-star me-1"></i>
+                                <i class="bx bx-star me-1"></i>
+                                <i class="bx bx-star me-1"></i>
+                                <i class="bx bx-star me-1"></i>
+                                56 Votos
+                            </a>
+                        @endif
+                    @endauth
                 </div>
             </div>
         @endforeach
-        @foreach($cards as $card)
+        @auth()
+            @if(auth()->user()->is_admin)
                 <div class="col-sm-6 col-lg-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $card->title }}</h5>
-                            <p class="card-text">{{ $card->info }}</p>
-                            <p class="card-text"><small class="text-muted">Tip de {{ mb_strtoupper($card->category->name) }} - {{ $card->votes }} Votos - {{ $card->rate }} Estrellas </small></p>
-                        </div>
+                    <div class="card p-3">
+                        <a class="dropdown-item text-end" href="{{ route('auth.card-create') }}">
+                            <i class="bx bx-plus me-1"></i>Agregar
+                        </a>
                     </div>
                 </div>
-        @endforeach
+            @endif
+        @endauth
     </div>
     <!--/ Card layout -->
 @endsection
