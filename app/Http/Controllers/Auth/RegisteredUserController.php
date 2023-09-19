@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class RegisteredUserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'last_login' => Carbon::now()->toDateTimeString()
         ]);
 
         event(new Registered($user));
@@ -61,8 +63,10 @@ class RegisteredUserController extends Controller
             'firstname' => explode(' ', $googleUser->name)[0],
             'lastname' =>explode(' ', $googleUser->name)[1],
             'username' => $googleUser->nickname,
-            'email' => $googleUser->email
+            'email' => $googleUser->email,
+            'last_login' => Carbon::now()->toDateTimeString()
         ]);
+
 
         event(new Registered($user));
 

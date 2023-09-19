@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -18,7 +19,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        Log::debug('An informational message.');
         return view('auth.login');
     }
 
@@ -28,6 +28,11 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
+
+        $user = Auth::user();
+        $user->update([
+            'last_login' => Carbon::now()->toDateTimeString()
+        ]);
 
         $request->session()->regenerate();
 
