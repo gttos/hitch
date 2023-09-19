@@ -46,11 +46,16 @@
                                         data-bs-toggle="dropdown">
                                     <i class="bx bx-dots-vertical-rounded"></i></button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
+                                    <a class="dropdown-item" href="{{ route('auth.user-edit', $user->id) }}"><i
                                                 class="bx bx-edit-alt me-1"></i>
                                         Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                        Delete</a>
+                                    <form action="{{ route('auth.user-delete', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="dropdown-item"><i class="bx bx-trash me-1"></i>
+                                            Delete
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </td>

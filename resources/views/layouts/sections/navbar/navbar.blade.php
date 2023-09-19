@@ -83,7 +83,7 @@
                                             <div class="dropdown-divider"></div>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('auth.user-edit') }}">
+                                            <a class="dropdown-item" href="{{ route('auth.user-edit', \Illuminate\Support\Facades\Auth::user()->getAuthIdentifier()) }}">
                                                 <i class="bx bx-user me-2"></i>
                                                 <span class="align-middle">Mi Cuenta</span>
                                             </a>

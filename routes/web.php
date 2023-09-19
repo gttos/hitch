@@ -37,6 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/auth/dashboard', [AuthDashboardController::class, 'show'])->name('auth.dashboard');
 
     Route::get('/auth/users', [UserController::class, 'index'])->name('auth.user-index');
+    Route::get('/auth/users/create', [UserController::class, 'create'])->name('auth.user-create');
+    Route::post('/auth/users', [UserController::class, 'store'])->name('auth.user-store');
+    Route::get('/auth/users/edit/{id}', [UserController::class, 'edit'])->name('auth.user-edit');
+    Route::patch('/auth/users/{id}', [UserController::class, 'update'])->name('auth.user-update');
+    Route::delete('/auth/users/{id}', [UserController::class, 'destroy'])->name('auth.user-delete');
+
 
     Route::get('/auth/cards', [CardController::class, 'index'])->name('auth.card-index');
     Route::get('/auth/cards/create', [CardController::class, 'create'])->name('auth.card-create');
@@ -52,9 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/auth/categories/{id}', [CategoryController::class, 'update'])->name('auth.category-update');
     Route::delete('/auth/categories/{id}', [CategoryController::class, 'destroy'])->name('auth.category-delete');
 
-    Route::get('/auth/profile', [UserController::class, 'edit'])->name('auth.user-edit');
-    Route::patch('/auth/profile', [UserController::class, 'update'])->name('auth.user-update');
-    Route::delete('/auth/profile', [UserController::class, 'destroy'])->name('auth.user-destroy');
+//    Route::get('/auth/profile', [UserController::class, 'edit'])->name('auth.user-edit');
+//    Route::patch('/auth/profile', [UserController::class, 'update'])->name('auth.user-update');
+//    Route::delete('/auth/profile', [UserController::class, 'destroy'])->name('auth.user-destroy');
 });
 
 // TEMPLATE

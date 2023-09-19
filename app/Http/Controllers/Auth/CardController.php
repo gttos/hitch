@@ -92,9 +92,9 @@ class CardController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $cardId)
+    public function destroy(string $id)
     {
-        $card = Card::where('id', $cardId)->first();
+        $card = Card::where('id', $id)->first();
 
         $card->delete();
 
