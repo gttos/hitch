@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('info');
             $table->smallInteger('rate')->nullable();
-            $table->integer('votes')->nullable();
+            $table->integer('votes')->default(0);
             $table->foreignUlid('user_id');
             $table->foreignUlid('category_id')
                 ->references('id')

@@ -57,6 +57,9 @@ class Card extends Model
 
         foreach ($cards as $card){
             $total = $card->rates()->count();
+            if ($total === 0){
+                break;
+            }
             $likes = $card->rates()->where('value', 1)->count();
 
             $card->update([
