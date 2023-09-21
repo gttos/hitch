@@ -21,6 +21,12 @@
           "slug": "layouts-container"
         }
       ]
+    },
+    {
+      "url": "/qr",
+      "name": "Codigo QR",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "qr"
     }
   ]
 }

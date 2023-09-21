@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\CategoryController;
 use App\Http\Controllers\Auth\DashboardController as AuthDashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Guest\QrController;
 use App\Http\Controllers\Guest\RateController;
 use App\Http\Controllers\Guest\TipsController;
 use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
@@ -27,6 +28,7 @@ $controller_path = 'App\Http\Controllers';
 // GUEST Routes
 Route::get('/', [GuestDashboardController::class, 'show'])->name('guest.dashboard');
 Route::get('/tips/{name}', [TipsController::class, 'show'])->name('guest.tip-show');
+Route::get('/qr', [QrController::class, 'index'])->name('guest.qr-show');
 
 Route::get('/google-auth/redirect', function () {
     return Socialite::driver('google')->redirect();

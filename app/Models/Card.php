@@ -61,9 +61,10 @@ class Card extends Model
                 break;
             }
             $likes = $card->rates()->where('value', 1)->count();
+            $rate = ($likes * 100) / $total;
 
             $card->update([
-                'rate' => ($likes * 100) / $total,
+                'rate' => $rate,
                 'votes' => $total
             ]);
         }
