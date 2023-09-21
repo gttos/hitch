@@ -19,46 +19,6 @@
 
     <!-- Examples -->
     <div class="row mb-5">
-        @foreach($cards as $card)
-            <div class="col-sm-6 col-lg-4 mb-4">
-                <div class="card p-3">
-                    <figure class="p-3 mb-0">
-                        <blockquote class="blockquote">
-                            <p>{{ $card->title }}</p>
-                        </blockquote>
-                        <figcaption class="blockquote-footer mb-0 text-muted">
-                            <cite>{{ $card->info }}</cite>
-                        </figcaption>
-                    </figure>
-                    @guest()
-                        <a class="dropdown-item text-end" href="#">
-                            <i class="bx bxs-star me-1"></i>
-                            <i class="bx bxs-star me-1"></i>
-                            <i class="bx bxs-star me-1"></i>
-                            <i class="bx bxs-star-half me-1"></i>
-                            <i class="bx bx-star me-1"></i>
-                            56 Votos
-                        </a>
-                    @endguest
-                    @auth()
-                        @if(auth()->user()->is_admin)
-                            <a class="dropdown-item text-end" href="{{ route('auth.card-edit', $card->id) }}">
-                                <i class="bx bx-edit-alt me-1"></i>Editar
-                            </a>
-                        @else
-                            <a class="dropdown-item text-end" href="#">
-                                <i class="bx bx-star me-1"></i>
-                                <i class="bx bx-star me-1"></i>
-                                <i class="bx bx-star me-1"></i>
-                                <i class="bx bx-star me-1"></i>
-                                <i class="bx bx-star me-1"></i>
-                                56 Votos
-                            </a>
-                        @endif
-                    @endauth
-                </div>
-            </div>
-        @endforeach
         @auth()
             @if(auth()->user()->is_admin)
                 <div class="col-sm-6 col-lg-4 mb-4">
@@ -70,6 +30,7 @@
                 </div>
             @endif
         @endauth
+        @include('guest._partials.show-cards')
     </div>
     <!--/ Card layout -->
 @endsection

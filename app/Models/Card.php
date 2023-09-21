@@ -48,6 +48,21 @@ class Card extends Model
     }
 
     public function rates() {
-        return $this->belongsToMany(Rate::class);
+        return $this->hasMany(Rate::class);
+    }
+
+    public static function countVotes()
+    {
+        $cards = Card::all();
+
+        foreach ($cards as $card){
+            $total = $card->rates()->count();
+            $likes = $card->rates()->where('value', 1)->count();
+
+            $card->update([
+                'rate' => ($likes * 100) / $total,
+                'votes' => $total
+            ]);
+        }
     }
 }

@@ -14,6 +14,8 @@ class Rate extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'value'
+        'value',
+        'card_id',
+        'user_id',
     ];
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\CategoryController;
 use App\Http\Controllers\Auth\DashboardController as AuthDashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Guest\RateController;
 use App\Http\Controllers\Guest\TipsController;
 use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/auth/users/{id}', [UserController::class, 'update'])->name('auth.user-update');
     Route::delete('/auth/users/{id}', [UserController::class, 'destroy'])->name('auth.user-delete');
 
-
     Route::get('/auth/cards', [CardController::class, 'index'])->name('auth.card-index');
     Route::get('/auth/cards/create', [CardController::class, 'create'])->name('auth.card-create');
     Route::post('/auth/cards', [CardController::class, 'store'])->name('auth.card-store');
@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/auth/categories/edit/{id}', [CategoryController::class, 'edit'])->name('auth.category-edit');
     Route::patch('/auth/categories/{id}', [CategoryController::class, 'update'])->name('auth.category-update');
     Route::delete('/auth/categories/{id}', [CategoryController::class, 'destroy'])->name('auth.category-delete');
+
+    Route::post('/rate-card/{id}', [RateController::class, 'store'])->name('auth.rate-card');
 
 //    Route::get('/auth/profile', [UserController::class, 'edit'])->name('auth.user-edit');
 //    Route::patch('/auth/profile', [UserController::class, 'update'])->name('auth.user-update');
