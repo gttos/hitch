@@ -1,3 +1,10 @@
+<p class="card-text">
+    <small class="text-muted m-3">
+        <a href="{{ route('guest.tip-show', $card->category->name) }}">
+            Tip de {{ ucfirst($card->category->name) }}
+        </a>
+    </small>
+</p>
 @if($card->rate != null)
     <span class="text-end" href="#">
         <small>
