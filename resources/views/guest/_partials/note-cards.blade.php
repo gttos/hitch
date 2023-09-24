@@ -1,4 +1,5 @@
 <div class="card p-3">
+    @include('guest._partials.header-cards')
     <figure class="p-3 mb-0">
         <blockquote class="blockquote">
             <p>{{ $card->title }}</p>

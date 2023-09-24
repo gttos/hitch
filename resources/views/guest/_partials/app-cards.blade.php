@@ -1,5 +1,6 @@
 <div class="card p-3">
-    <img class="card-img-top" src="{{asset('assets/img/01HAMYXWNSAVN46GTMNFSTQ4C7.png')}}"
+    @include('guest._partials.header-cards')
+    <img class="card-img-top p-3 mb-0" src="{{asset('assets/img/01HAMYXWNSAVN46GTMNFSTQ4C7.png')}}"
          alt="Card image cap"/>
     <figure class="p-3 mb-0">
         @if( 'note' === $card->type )

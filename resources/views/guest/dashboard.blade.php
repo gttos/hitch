@@ -12,6 +12,7 @@
 
 @section('page-script')
     <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+    <script src="{{asset('assets/js/card-vote.js')}}"></script>
 @endsection
 
 @section('content')
