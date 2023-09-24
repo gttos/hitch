@@ -1,1 +1,50 @@
-"use strict";document.addEventListener("DOMContentLoaded",(function(){const e=document.querySelectorAll(".like-button"),t=document.querySelectorAll(".dislike-button");function o(e,t){const o=new FormData;o.append("value",t),fetch("/rate-card/"+e,{method:"POST",body:o,headers:{"X-CSRF-TOKEN":document.querySelector('meta[name="csrf-token"]').getAttribute("content")}}).then((o=>{o.ok?console.log(`Voto ${t} exitoso para la publicación ${e}`):console.error(`Error en el voto ${t} para la publicación ${e}`)})).catch((e=>{console.error("Error de red:",e)}))}e.forEach((e=>{e.addEventListener("click",(function(){o(e.getAttribute("data-card-id"),1)}))})),t.forEach((e=>{e.addEventListener("click",(function(){o(e.getAttribute("data-card-id"),0)}))}))}));
+/**
+ * Form Basic Inputs
+ */
+
+'use strict';
+
+document.addEventListener('DOMContentLoaded', function () {
+    const likeButtons = document.querySelectorAll('.like-button');
+    const dislikeButtons = document.querySelectorAll('.dislike-button');
+
+    likeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const cardId = button.getAttribute('data-card-id');
+            sendVote(cardId, 1);
+        });
+    });
+
+    dislikeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const cardId = button.getAttribute('data-card-id');
+            sendVote(cardId, 0);
+        });
+    });
+
+    function sendVote(cardId, value) {
+        const formData = new FormData();
+        formData.append('value', value);
+
+        fetch('/rate-card/' + cardId, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Actualizar la interfaz de usuario para reflejar el voto exitoso
+                console.log(`Voto ${value} exitoso para la publicación ${cardId}`);
+            } else {
+                // Manejar errores de respuesta aquí
+                console.error(`Error en el voto ${value} para la publicación ${cardId}`);
+            }
+        })
+        .catch(error => {
+            // Manejar errores de red aquí
+            console.error('Error de red:', error);
+        });
+    }
+});
