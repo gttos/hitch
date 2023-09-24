@@ -32,5 +32,6 @@
         @endauth
         @include('guest._partials.show-cards')
     </div>
+
     <!--/ Card layout -->
 @endsection

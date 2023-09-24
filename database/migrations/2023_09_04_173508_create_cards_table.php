@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->ulid('id');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('info');
+            $table->string('type')->default('note');
             $table->smallInteger('rate')->nullable();
             $table->integer('votes')->default(0);
             $table->foreignUlid('user_id');
