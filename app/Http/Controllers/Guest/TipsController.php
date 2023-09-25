@@ -16,7 +16,7 @@ class TipsController extends Controller
         $category = Category::where('name', $name)->first();
         return view('guest.tip-show', [
             'category' => $category,
-            'cards' => $category->cards()->cursorPaginate(5)
+            'cards' => $category->cards()->cursorPaginate(6)
         ]);
     }
 }

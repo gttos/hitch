@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function show()
     {
-        $cards = Card::cursorPaginate(5);
+        $cards = Card::cursorPaginate(9);
 
         return view('guest.dashboard', [
             'cards' => $cards
