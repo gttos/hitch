@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Rate;
+use App\Models\Vote;
 use Illuminate\Database\Seeder;
 
-class RateSeeder extends Seeder
+class VoteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Rate::factory(10)->create();
+        Vote::factory(10)->create();
     }
 }

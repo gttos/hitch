@@ -25,10 +25,10 @@ class Card extends Model
 
     protected $fillable = [
         'id',
-        'title',
-        'info',
-        'rate',
-        'votes',
+        'tip',
+        'explanation',
+        'votes_rate',
+        'votes_number',
         'user_id',
         'category_id',
         'tip_id'
@@ -47,8 +47,8 @@ class Card extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function rates() {
-        return $this->hasMany(Rate::class);
+    public function votes() {
+        return $this->hasMany(Vote::class);
     }
 
     public static function countVotes()
@@ -56,16 +56,16 @@ class Card extends Model
         $cards = Card::all();
 
         foreach ($cards as $card){
-            $total = $card->rates()->count();
+            $total = $card->votes()->count();
             if ($total === 0){
                 break;
             }
-            $likes = $card->rates()->where('value', 1)->count();
+            $likes = $card->votes()->where('vote', 1)->count();
             $rate = ($likes * 100) / $total;
 
             $card->update([
-                'rate' => $rate,
-                'votes' => $total
+                'votes_rate' => $rate,
+                'votes_number' => $total
             ]);
         }
     }

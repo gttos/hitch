@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->ulid('id');
-            $table->string('title')->nullable();
-            $table->text('info');
+            $table->string('tip')->nullable();
+            $table->text('explanation');
             $table->string('type')->default('note');
-            $table->smallInteger('rate')->nullable();
-            $table->integer('votes')->default(0);
+            $table->smallInteger('votes_rate')->nullable();
+            $table->integer('votes_number')->default(0);
             $table->foreignUlid('user_id');
             $table->foreignUlid('category_id')
                 ->references('id')

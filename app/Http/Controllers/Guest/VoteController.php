@@ -3,28 +3,25 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
-use App\Models\Rate;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
-class RateController extends Controller
+class VoteController extends Controller
 {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, $id): void
     {
         $request->validate([
-            'value' => ['required', 'string']
+            'vote' => ['required', 'string']
         ]);
 
-        Rate::create([
-            'value' => intval($request->value),
+        Vote::create([
+            'vote' => intval($request->vote),
             'card_id' => $id,
             'user_id' => Auth::user()->getAuthIdentifier()
         ]);
-
-        return Redirect::route('guest.dashboard');
     }
 }

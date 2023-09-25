@@ -12,6 +12,7 @@
 
 @section('page-script')
     <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+    <script src="{{asset('assets/js/card-fav.js')}}"></script>
     <script src="{{asset('assets/js/card-vote.js')}}"></script>
 @endsection
 
@@ -34,5 +35,6 @@
         @include('guest._partials.show-cards')
     </div>
 
+    {{ $cards->links() }}
     <!--/ Card layout -->
 @endsection

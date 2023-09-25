@@ -42,8 +42,8 @@ class CardController extends Controller
         ]);
 
         $card = Card::create([
-            'title' => $request->title,
-            'info' => $request->info,
+            'tip' => $request->tip,
+            'explanation' => $request->explanation,
             'user_id' => auth()->user()->getAuthIdentifier(),
             'category_id' => $request->category_id,
             'tag_id' => 1
@@ -81,8 +81,8 @@ class CardController extends Controller
         $card = Card::find($id);
 
         $card->update([
-            'title' => $request->title,
-            'info' => $request->info,
+            'tip' => $request->tip,
+            'explanation' => $request->explanation,
             'category_id' => $request->category_id
         ]);
 

@@ -5,28 +5,19 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function () {
-    const likeButtons = document.querySelectorAll('.like-button');
-    const dislikeButtons = document.querySelectorAll('.dislike-button');
+    const favButtons = document.querySelectorAll('.fav-button');
 
-    likeButtons.forEach(button => {
+    favButtons.forEach(button => {
         button.addEventListener('click', function () {
             const cardId = button.getAttribute('data-card-id');
-            sendVote(cardId, 1);
+            setFav(cardId);
         });
     });
 
-    dislikeButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const cardId = button.getAttribute('data-card-id');
-            sendVote(cardId, 0);
-        });
-    });
-
-    function sendVote(cardId, vote) {
+    function setFav(cardId) {
         const formData = new FormData();
-        formData.append('vote', vote);
 
-        fetch('/vote-card/' + cardId, {
+        fetch('/fav-card/' + cardId, {
             method: 'POST',
             body: formData,
             headers: {
@@ -36,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => {
             if (response.ok) {
                 // Actualizar la interfaz de usuario para reflejar el voto exitoso
-                console.log(`Voto ${vote} exitoso para la publicación ${cardId}`);
+                console.log(`Voto exitoso para la publicación ${cardId}`);
             } else {
                 // Manejar errores de respuesta aquí
-                console.error(`Error en el voto ${vote} para la publicación ${cardId}`);
+                console.error(`Error en el voto para la publicación ${cardId}`);
             }
         })
         .catch(error => {

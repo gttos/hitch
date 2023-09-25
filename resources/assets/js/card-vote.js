@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    function sendVote(cardId, value) {
+    function sendVote(cardId, vote) {
         const formData = new FormData();
-        formData.append('value', value);
+        formData.append('vote', vote);
 
-        fetch('/rate-card/' + cardId, {
+        fetch('/vote-card/' + cardId, {
             method: 'POST',
             body: formData,
             headers: {
@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => {
             if (response.ok) {
                 // Actualizar la interfaz de usuario para reflejar el voto exitoso
-                console.log(`Voto ${value} exitoso para la publicación ${cardId}`);
+                console.log(`Voto ${vote} exitoso para la publicación ${cardId}`);
             } else {
                 // Manejar errores de respuesta aquí
-                console.error(`Error en el voto ${value} para la publicación ${cardId}`);
+                console.error(`Error en el voto ${vote} para la publicación ${cardId}`);
             }
         })
         .catch(error => {

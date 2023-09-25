@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Symfony\Component\Uid\Ulid;
 
-class Rate extends Model
+class Vote extends Model
 {
     use HasFactory;
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'value',
+        'vote',
         'card_id',
         'user_id',
     ];

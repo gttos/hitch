@@ -27,7 +27,7 @@
                 <tbody class="table-border-bottom-0">
                 @foreach( $cards as $card)
                     <tr>
-                        <td>{{ Str::limit($card->title, 40) }}..</td>
+                        <td>{{ Str::limit($card->tip, 40) }}..</td>
                         <td><span class="badge bg-label-primary me-1"> {{ $card->category->name }}</span></td>
                         <td><span class="badge bg-label-secondary me-1"> {{ $card->created_at->format('Y-m-d') }}</span></td>
                         <td>

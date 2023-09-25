@@ -5,8 +5,9 @@ use App\Http\Controllers\Auth\CategoryController;
 use App\Http\Controllers\Auth\DashboardController as AuthDashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Guest\FavoriteController;
 use App\Http\Controllers\Guest\QrController;
-use App\Http\Controllers\Guest\RateController;
+use App\Http\Controllers\Guest\VoteController;
 use App\Http\Controllers\Guest\TipsController;
 use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -60,7 +61,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/auth/categories/{id}', [CategoryController::class, 'update'])->name('auth.category-update');
     Route::delete('/auth/categories/{id}', [CategoryController::class, 'destroy'])->name('auth.category-delete');
 
-    Route::post('/rate-card/{id}', [RateController::class, 'store'])->name('auth.rate-card');
+    Route::post('/vote-card/{id}', [VoteController::class, 'store'])->name('auth.vote-card');
+    Route::post('/fav-card/{id}', [FavoriteController::class, 'store'])->name('auth.fav-card');
 
 //    Route::get('/auth/profile', [UserController::class, 'edit'])->name('auth.user-edit');
 //    Route::patch('/auth/profile', [UserController::class, 'update'])->name('auth.user-update');

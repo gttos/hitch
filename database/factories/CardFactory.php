@@ -20,10 +20,10 @@ class CardFactory extends Factory
     {
         return [
             'id' => fake()->regexify('[A-Za-z0-9]{' . 26 . '}'),
-            'title' => fake()->sentence(),
-            'info' => fake()->text(),
-            'rate' => fake()->numberBetween(1,5),
-            'votes' => fake()->numberBetween(1,350),
+            'tip' => fake()->sentence(),
+            'explanation' => fake()->text(),
+            'votes_rate' => fake()->numberBetween(1,5),
+            'votes_number' => fake()->numberBetween(1,350),
             'user_id' => User::all()->count() ? User::all()->random()->id : 0,
             'category_id' => Category::all()->count() ? Category::all()->random()->id : 0
         ];

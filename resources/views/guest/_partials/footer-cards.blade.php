@@ -1,8 +1,8 @@
-@if($card->rate != null)
+@if($card->votes_rate != null)
     <span class="text-end" href="#">
         <small>
-            {{ $card->votes }} Votos <i class="bx bx-minus bx-xxs me-1"></i>
-            {{ $card->rate }}% <i class="bx bx-like bx-xxs me-1"></i>
+            {{ $card->votes_number }} Votos <i class="bx bx-minus bx-xxs me-1"></i>
+            {{ $card->votes_rate }}% <i class="bx bx-like bx-xxs me-1"></i>
         </small>
     </span>
 @endif

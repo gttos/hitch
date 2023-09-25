@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rates', function (Blueprint $table) {
+        Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('value');
+            $table->smallInteger('vote');
             $table->ulid('card_id');
             $table->ulid('user_id');
             $table->timestamps();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rate');
+        Schema::dropIfExists('votes');
     }
 };

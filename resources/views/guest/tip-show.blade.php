@@ -32,5 +32,7 @@
         @endauth
         @include('guest._partials.show-cards')
     </div>
+
+    {{ $cards->links() }}
     <!--/ Card layout -->
 @endsection

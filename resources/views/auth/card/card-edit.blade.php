@@ -25,12 +25,12 @@
                         @method('PATCH')
                         <div class="row">
                             <div class="mb-3 col-md-12">
-                                <label for="title" class="form-label">Titular</label>
-                                <input class="form-control" type="text" id="title" name="title" value="{{ $card->title }}" autofocus />
+                                <label for="title" class="form-label">Tip</label>
+                                <input class="form-control" type="text" id="title" name="title" value="{{ $card->tip }}" autofocus />
                             </div>
                             <div class="mb-3 col-md-12">
-                                <label for="info" class="form-label">Descripción</label>
-                                <textarea class="form-control" type="text" name="info" id="info">{{ $card->info }}</textarea>
+                                <label for="info" class="form-label">Explicación</label>
+                                <textarea class="form-control" type="text" name="info" id="info">{{ $card->explanation }}</textarea>
                             </div>
                             <div class="mb-3 col-md-12">
                                 <label for="category_id" class="form-label">Categoría</label>
