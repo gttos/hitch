@@ -29,6 +29,7 @@ $controller_path = 'App\Http\Controllers';
 // GUEST Routes
 Route::get('/', [GuestDashboardController::class, 'show'])->name('guest.dashboard');
 Route::get('/tips/{name}', [TipsController::class, 'show'])->name('guest.tip-show');
+Route::get('/fav', [FavoriteController::class, 'show'])->name('guest.fav-show');
 Route::get('/qr', [QrController::class, 'index'])->name('guest.qr-show');
 
 Route::get('/google-auth/redirect', function () {

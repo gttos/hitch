@@ -17,21 +17,10 @@
 @endsection
 
 @section('content')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">UI Elements /</span> Cards Basic</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tus /</span> Favoritos</h4>
 
     <!-- Examples -->
     <div class="row mb-5">
-        @auth()
-            @if(auth()->user()->is_admin)
-                <div class="col-sm-6 col-lg-4 mb-4">
-                    <div class="card p-3">
-                        <a class="dropdown-item text-center" href="{{ route('auth.card-create') }}">
-                            <i class="bx bx-plus me-1"></i>Agregar
-                        </a>
-                    </div>
-                </div>
-            @endif
-        @endauth
         @include('guest._partials.show-cards')
     </div>
 

@@ -9,9 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function show()
+    {
+        $user = User::findOrFail(Auth::user()->getAuthIdentifier());
+        return view('guest.fav-show', [
+            'cards' => $user->favCards()->cursorPaginate(6)
+        ]);
+    }
+
     public function store($id): void
     {
         $user = User::findOrFail(Auth::user()->getAuthIdentifier());

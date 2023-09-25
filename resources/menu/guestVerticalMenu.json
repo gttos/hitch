@@ -23,6 +23,12 @@
       ]
     },
     {
+      "url": "/fav",
+      "name": "Mis Favoritos",
+      "icon": "menu-icon tf-icons bx bx-star",
+      "slug": "fav"
+    },
+    {
       "url": "/qr",
       "name": "Codigo QR",
       "icon": "menu-icon tf-icons bx bx-home-circle",
