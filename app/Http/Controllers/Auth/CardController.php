@@ -75,8 +75,8 @@ class CardController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'info' => ['required', 'string', 'max:1000'],
+            'tip' => ['required', 'string', 'max:255'],
+            'explanation' => ['required', 'string', 'max:1000'],
             'category_id' => ['required', 'string']
         ]);
 
