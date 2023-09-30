@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('type')->default('note');
             $table->smallInteger('votes_rate')->nullable();
             $table->integer('votes_number')->default(0);
+            $table->boolean('is_approved')->default(0);
+
             $table->foreignUlid('user_id');
             $table->foreignUlid('category_id')
                 ->references('id')

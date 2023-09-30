@@ -11,10 +11,10 @@ class DashboardController extends Controller
 {
     public function show()
     {
-        $cards = Card::cursorPaginate(9);
+        $cards = Card::where('is_approved', 1);
 
         return view('guest.dashboard', [
-            'cards' => $cards
+            'cards' => $cards->cursorPaginate(9)
         ]);
     }
 }

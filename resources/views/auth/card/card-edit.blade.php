@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+    @include('auth._partials.errors')
     <h4 class="fw-bold py-3 mb-4">
         <span class="text-muted fw-light">Cards /</span> Edición
     </h4>
@@ -39,6 +40,13 @@
                                     @foreach( $categories as $category )
                                         <option value="{{ $category->id }}" {{ $category->id == $card->category_id ? 'selected' : '' }}>{{ ucfirst($category->name) }}</option>
                                     @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-12">
+                                <label for="is_approved" class="form-label">Aprobado</label>
+                                <select id="is_approved" name="is_approved" class="select2 form-select">
+                                    <option value="0" {{ old('approved') == 0 ? 'selected' : '' }}>Si</option>
+                                    <option value="1" {{ old('approved') == 1 ? 'selected' : '' }}>No</option>
                                 </select>
                             </div>
                         </div>

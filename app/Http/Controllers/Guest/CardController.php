@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Card;
@@ -12,34 +12,12 @@ use Illuminate\Support\Str;
 
 class CardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $cards = Card::all();
-        return view('auth.card.card-index', ['cards' => $cards]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $categories = Category::all();
-        return view('auth.card.card-create', ['categories' => $categories]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'tip' => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
             'explanation' => ['required', 'string', 'max:1000'],
-            'category_id' => ['required', 'string'],
-            'is_approved' => ['required', 'string']
+            'category_id' => ['required', 'string']
         ]);
 
         $card = Card::create([
@@ -48,7 +26,7 @@ class CardController extends Controller
             'user_id' => auth()->user()->getAuthIdentifier(),
             'category_id' => $request->category_id,
             'tag_id' => 1,
-            'is_approved' => $request->is_approved
+            'is_approved' => 0
         ]);
 
         event(new Registered($card));
@@ -56,22 +34,6 @@ class CardController extends Controller
         return Redirect::route('auth.card-index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $card = Card::where('id', $id)->first();
-        $categories = Category::all();
-        return view('auth.card.card-edit', [
-            'card' => $card,
-            'categories' => $categories
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $request->validate([

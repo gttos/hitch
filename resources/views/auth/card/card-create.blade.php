@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+    @include('auth._partials.errors')
     <h4 class="fw-bold py-3 mb-4">
         <span class="text-muted fw-light">Cards /</span> Nuevo
     </h4>
@@ -14,7 +15,8 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-pills flex-column flex-md-row mb-3">
-                <li class="nav-item"><a class="nav-link" href="{{ route('auth.card-index') }}"><i class="bx bx-bell me-1"></i>Voler al Listado</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('auth.card-index') }}"><i
+                                class="bx bx-bell me-1"></i>Voler al Listado</a></li>
             </ul>
             <div class="card mb-4">
                 <h5 class="card-header">Profile Details</h5>
@@ -24,20 +26,31 @@
                         @csrf
                         <div class="row">
                             <div class="mb-3 col-md-12">
-                                <label for="title" class="form-label">Titular</label>
-                                <input class="form-control" type="text" id="title" name="title" value="" autofocus />
+                                <label for="tip" class="form-label">Tip</label>
+                                <input class="form-control" type="text" id="tip" name="tip" value="{{ old('tip') }}"
+                                       autofocus/>
                             </div>
                             <div class="mb-3 col-md-12">
-                                <label for="info" class="form-label">Descripción</label>
-                                <textarea class="form-control" type="text" name="info" id="info"></textarea>
+                                <label for="explanation" class="form-label">Explicación</label>
+                                <textarea class="form-control" type="text" name="explanation"
+                                          id="explanation">{{ old('explanation') }}</textarea>
                             </div>
                             <div class="mb-3 col-md-12">
                                 <label for="category_id" class="form-label">Categoría</label>
                                 <select id="category_id" name="category_id" class="select2 form-select">
-                                    <option value="">Seleccionar  Categoría</option>
+                                    <option value="">Seleccionar Categoría</option>
                                     @foreach( $categories as $category)
-                                    <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
+                                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                            {{ ucfirst($category->name) }}
+                                        </option>
                                     @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-12">
+                                <label for="is_approved" class="form-label">Aprobado</label>
+                                <select id="is_approved" name="is_approved" class="select2 form-select">
+                                    <option value="0" {{ old('approved') == 0 ? 'selected' : '' }}>Si</option>
+                                    <option value="1" {{ old('approved') == 1 ? 'selected' : '' }}>No</option>
                                 </select>
                             </div>
                         </div>
