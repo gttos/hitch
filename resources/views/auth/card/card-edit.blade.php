@@ -51,10 +51,10 @@
                             <div class="mb-3 col-md-12">
                                 <label for="is_approved" class="form-label">Aprobado</label>
                                 <select id="is_approved" name="is_approved" class="select2 form-select">
-                                    <option value="0" {{ ($card->is_approved ?? old('is_approved')) == 0 ? 'selected' : '' }}>
+                                    <option value="0" {{ $card->is_approved == 0 ? 'selected' : '' }}>
                                         Si
                                     </option>
-                                    <option value="1" {{ ($card->is_approved ?? old('is_approved')) == 1 ? 'selected' : '' }}>
+                                    <option value="1" {{ $card->is_approved == 1 ? 'selected' : '' }}>
                                         No
                                     </option>
                                 </select>
