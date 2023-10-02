@@ -31,6 +31,7 @@ class Card extends Model
         'votes_number',
         'user_id',
         'category_id',
+        'is_approved',
         'tip_id'
     ];
 
