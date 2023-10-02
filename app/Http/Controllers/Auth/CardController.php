@@ -82,6 +82,7 @@ class CardController extends Controller
             'tip' => ['required', 'string', 'max:255'],
             'explanation' => ['required', 'string', 'max:1000'],
             'category_id' => ['required', 'string'],
+            'is_approved' => ['required', 'string'],
             'tags' => ['nullable']
         ]);
 
@@ -90,7 +91,8 @@ class CardController extends Controller
         $card->update([
             'tip' => $request->tip,
             'explanation' => $request->explanation,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'is_approved' => $request->is_approved
         ]);
 
         $this->syncCardWithTags($request, $card);
@@ -108,7 +110,8 @@ class CardController extends Controller
 
         $card->delete();
 
-        return Redirect::route('auth.card-index')->withErrors();
+        return Redirect::route('auth.card-index')
+            ->with('success', 'Deleted successfully!');
     }
 
     private function syncCardWithTags(Request $request, $card): void
