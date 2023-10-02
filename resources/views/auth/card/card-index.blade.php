@@ -23,6 +23,7 @@
                     <th>Titulo</th>
                     <th>Categoría</th>
                     <th>Tags</th>
+                    <th>Activo</th>
                     <th>Fecha de Creación</th>
                     <th>Acciones</th>
                 </tr>
@@ -39,6 +40,7 @@
                                 @endforeach
                             @endif
                         </td>
+                        <td><span class="badge bg-label-secondary me-1"> @if($card->is_active) YES @else NO @endif</span>
                         <td><span class="badge bg-label-secondary me-1"> {{ $card->created_at->format('Y-m-d') }}</span>
                         </td>
                         <td>
