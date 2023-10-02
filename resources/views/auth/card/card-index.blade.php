@@ -1,14 +1,16 @@
-@extends('layouts/contentNavbarLayout')
+@extends('auth/layouts/contentNavbarLayout')
 
 @section('title', 'Tables - Basic Tables')
 
 @section('content')
+    @include('auth._partials.success')
     <h4 class="fw-bold py-3 mb-4">
         <span class="text-muted fw-light">Tables /</span> Basic Tables
     </h4>
 
     <ul class="nav nav-pills flex-column flex-md-row mb-3">
-        <li class="nav-item"><a class="nav-link active" href="{{route('auth.card-create')}}"><i class="bx bx-plus me-1"></i>Agregar</a></li>
+        <li class="nav-item"><a class="nav-link active" href="{{route('auth.card-create')}}"><i
+                        class="bx bx-plus me-1"></i>Agregar</a></li>
     </ul>
 
     <!-- Striped Rows -->
@@ -20,6 +22,7 @@
                 <tr>
                     <th>Titulo</th>
                     <th>Categoría</th>
+                    <th>Tags</th>
                     <th>Fecha de Creación</th>
                     <th>Acciones</th>
                 </tr>
@@ -29,7 +32,15 @@
                     <tr>
                         <td>{{ Str::limit($card->tip, 40) }}..</td>
                         <td><span class="badge bg-label-primary me-1"> {{ $card->category->name }}</span></td>
-                        <td><span class="badge bg-label-secondary me-1"> {{ $card->created_at->format('Y-m-d') }}</span></td>
+                        <td>
+                            @if($card->tags != null)
+                                @foreach($card->tags as $tag)
+                                    <span class="badge bg-label-primary me-1">#{{ ucfirst($tag->slug) }}</span>
+                                @endforeach
+                            @endif
+                        </td>
+                        <td><span class="badge bg-label-secondary me-1"> {{ $card->created_at->format('Y-m-d') }}</span>
+                        </td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -43,7 +54,8 @@
                                         @csrf
                                         @method('DELETE')
                                         <button class="dropdown-item"><i class="bx bx-trash me-1"></i>
-                                            Delete</button>
+                                            Delete
+                                        </button>
                                     </form>
                                 </div>
                             </div>

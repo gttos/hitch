@@ -1,15 +1,16 @@
 <?php
 
 use App\Http\Controllers\Auth\CardController;
-use App\Http\Controllers\Auth\CategoryController;
+use App\Http\Controllers\Auth\CategoryController as AuthCategoryController;;
 use App\Http\Controllers\Auth\DashboardController as AuthDashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use App\Http\Controllers\Guest\FavoriteController;
 use App\Http\Controllers\Guest\QrController;
+use App\Http\Controllers\Guest\TagController;
+use App\Http\Controllers\Guest\CategoryController as GuestCategoryController;
 use App\Http\Controllers\Guest\VoteController;
-use App\Http\Controllers\Guest\TipsController;
-use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -28,7 +29,8 @@ $controller_path = 'App\Http\Controllers';
 
 // GUEST Routes
 Route::get('/', [GuestDashboardController::class, 'show'])->name('guest.dashboard');
-Route::get('/tips/{name}', [TipsController::class, 'show'])->name('guest.tip-show');
+Route::get('/tag/{slug}', [TagController::class, 'show'])->name('guest.tag-show');
+Route::get('/tips/{name}', [GuestCategoryController::class, 'show'])->name('guest.tip-show');
 Route::get('/fav', [FavoriteController::class, 'show'])->name('guest.fav-show');
 Route::get('/qr', [QrController::class, 'index'])->name('guest.qr-show');
 
@@ -55,12 +57,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/auth/cards/{id}', [CardController::class, 'update'])->name('auth.card-update');
     Route::delete('/auth/cards/{id}', [CardController::class, 'destroy'])->name('auth.card-delete');
 
-    Route::get('/auth/categories', [CategoryController::class, 'index'])->name('auth.category-index');
-    Route::get('/auth/categories/create', [CategoryController::class, 'create'])->name('auth.category-create');
-    Route::post('/auth/categories', [CategoryController::class, 'store'])->name('auth.category-store');
-    Route::get('/auth/categories/edit/{id}', [CategoryController::class, 'edit'])->name('auth.category-edit');
-    Route::patch('/auth/categories/{id}', [CategoryController::class, 'update'])->name('auth.category-update');
-    Route::delete('/auth/categories/{id}', [CategoryController::class, 'destroy'])->name('auth.category-delete');
+    Route::get('/auth/categories', [AuthCategoryController::class, 'index'])->name('auth.category-index');
+    Route::get('/auth/categories/create', [AuthCategoryController::class, 'create'])->name('auth.category-create');
+    Route::post('/auth/categories', [AuthCategoryController::class, 'store'])->name('auth.category-store');
+    Route::get('/auth/categories/edit/{id}', [AuthCategoryController::class, 'edit'])->name('auth.category-edit');
+    Route::patch('/auth/categories/{id}', [AuthCategoryController::class, 'update'])->name('auth.category-update');
+    Route::delete('/auth/categories/{id}', [AuthCategoryController::class, 'destroy'])->name('auth.category-delete');
 
     Route::post('/vote-card/{id}', [VoteController::class, 'store'])->name('auth.vote-card');
     Route::post('/fav-card/{id}', [FavoriteController::class, 'store'])->name('auth.fav-card');

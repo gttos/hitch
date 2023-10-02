@@ -23,16 +23,16 @@
     <div class="layout-wrapper layout-content-navbar {{ $isMenu ? '' : 'layout-without-menu' }}">
         <div class="layout-container">
 
+            @auth()
+                @if ($isMenu)
+                    @include('guest.layouts.sections.menu.guestMenu')
+                @endif
+            @endauth
             @guest()
                 @if ($isMenu)
                     @include('guest.layouts.sections.menu.guestMenu')
                 @endif
             @endguest
-            @auth()
-                @if ($isMenu)
-                    @include('user.layouts.sections.menu.userMenu')
-                @endif
-            @endauth
 
             <!-- Layout page -->
             <div class="layout-page">

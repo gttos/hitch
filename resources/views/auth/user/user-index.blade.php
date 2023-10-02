@@ -1,4 +1,4 @@
-@extends('layouts/contentNavbarLayout')
+@extends('auth/layouts/contentNavbarLayout')
 
 @section('title', 'Tables - Basic Tables')
 

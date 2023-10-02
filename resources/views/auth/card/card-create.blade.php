@@ -1,4 +1,4 @@
-@extends('layouts/contentNavbarLayout')
+@extends('auth/layouts/contentNavbarLayout')
 
 @section('title', 'Account settings - Account')
 
@@ -53,6 +53,11 @@
                                     <option value="1" {{ old('approved') == 1 ? 'selected' : '' }}>No</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label for="tags" class="form-label">Tags</label>
+                            <input class="form-control" type="text" id="tags" name="tags" value="{{ old('tags') }}"
+                                   autofocus/>
                         </div>
                         <div class="mt-2">
                             <button type="submit" class="btn btn-primary me-2">Guardar</button>

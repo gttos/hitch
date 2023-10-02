@@ -13,4 +13,7 @@
                         class="bx bx-star me-1"></i></a>
         @endif
     @endauth
+    @guest()
+        <a class="fav-button cursor-pointer" href="{{url('login')}}"><i class="bx bx-star me-1"></i></a>
+    @endguest
 </p>

@@ -11,9 +11,14 @@ class FavoriteController extends Controller
 {
     public function show()
     {
-        $user = User::findOrFail(Auth::user()->getAuthIdentifier());
+        if (Auth::check()){
+            $user = User::findOrFail(Auth::user()->getAuthIdentifier());
+            return view('guest.fav-show', [
+                'cards' => $user->favCards()->cursorPaginate(6)
+            ]);
+        }
         return view('guest.fav-show', [
-            'cards' => $user->favCards()->cursorPaginate(6)
+            'cards' => collect()
         ]);
     }
 

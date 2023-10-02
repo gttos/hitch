@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Card;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -39,7 +40,8 @@ class CardController extends Controller
             'tip' => ['required', 'string', 'max:255'],
             'explanation' => ['required', 'string', 'max:1000'],
             'category_id' => ['required', 'string'],
-            'is_approved' => ['required', 'string']
+            'is_approved' => ['required', 'string'],
+            'tags' => ['nullable']
         ]);
 
         $card = Card::create([
@@ -47,13 +49,15 @@ class CardController extends Controller
             'explanation' => $request->explanation,
             'user_id' => auth()->user()->getAuthIdentifier(),
             'category_id' => $request->category_id,
-            'tag_id' => 1,
             'is_approved' => $request->is_approved
         ]);
 
+        $this->syncCardWithTags($request, $card);
+
         event(new Registered($card));
 
-        return Redirect::route('auth.card-index');
+        return Redirect::route('auth.card-index')
+            ->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -77,7 +81,8 @@ class CardController extends Controller
         $request->validate([
             'tip' => ['required', 'string', 'max:255'],
             'explanation' => ['required', 'string', 'max:1000'],
-            'category_id' => ['required', 'string']
+            'category_id' => ['required', 'string'],
+            'tags' => ['nullable']
         ]);
 
         $card = Card::find($id);
@@ -88,7 +93,10 @@ class CardController extends Controller
             'category_id' => $request->category_id
         ]);
 
-        return Redirect::route('auth.card-index');
+        $this->syncCardWithTags($request, $card);
+
+        return Redirect::route('auth.card-index')
+            ->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -100,6 +108,28 @@ class CardController extends Controller
 
         $card->delete();
 
-        return Redirect::route('auth.card-index');
+        return Redirect::route('auth.card-index')->withErrors();
+    }
+
+    private function syncCardWithTags(Request $request, $card): void
+    {
+        $tagWords = explode(',', $request->input('tags'));
+        $tagSlug = [];
+
+        foreach ($tagWords as $word) {
+            $tagSlug[] = Str::slug($word, '-');
+        }
+        $newTags = collect($tagSlug)->map(function ($tagSlug) {
+            $humanWord = Str::title(str_replace('-', ' ', $tagSlug));
+            return Tag::firstOrCreate(
+                ['slug' => Str::slug($tagSlug)],
+                [
+                    'name' => Str::upper($humanWord),
+                    'slug' => Str::slug($tagSlug)
+                ]
+            );
+        });
+
+        $card->tags()->sync($newTags->pluck('id'));
     }
 }

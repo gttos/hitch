@@ -23,7 +23,8 @@ class Tag extends Model
     }
 
     protected $fillable = [
-        'tag'
+        'name',
+        'slug'
     ];
 
     public function cards() {
