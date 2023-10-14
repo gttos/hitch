@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "lang" : "en",
+  "name" : "Hitch",
+  "scope" : "/",
+  "display": "standalone",
+  "start_url": "/",
+  "short_name" : "Hitch",
+  "description" : "",
+  "orientation" : "portrait",
+  "background_color": "#3E4EB8",
+  "theme_color": "#2F3BA2",
+  "generated" : "true",
+  "icons": [
+    {
+      "src": "/assets/img/qrcode_home.es.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
