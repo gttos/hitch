@@ -22,11 +22,16 @@ class FavoriteController extends Controller
         ]);
     }
 
-    public function store($id): void
+    public function store($id): string
     {
         $user = User::findOrFail(Auth::user()->getAuthIdentifier());
         $card = Card::findOrFail($id);
 
-        $user->favCards()->toggle($card->id);
+        $toggled = $user->favCards()->toggle($card->id);
+
+        if (empty($toggled['attached'])){
+            return response(['status' => 'attached'], 201);
+        }
+        return response(['status' => 'detached'], 404);
     }
 }

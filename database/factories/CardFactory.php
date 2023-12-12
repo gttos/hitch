@@ -21,6 +21,7 @@ class CardFactory extends Factory
         return [
             'id' => fake()->regexify('[A-Za-z0-9]{' . 26 . '}'),
             'tip' => fake()->sentence(),
+            'slug' => fake()->slug(),
             'explanation' => fake()->text(),
             'votes_rate' => fake()->numberBetween(1,5),
             'votes_number' => fake()->numberBetween(1,350),

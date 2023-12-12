@@ -1,4 +1,4 @@
-<div class="card p-3">
+<div class="card p-3" id="{{ $card->slug }}">
     @include('guest._partials.header-cards')
     <figure class="p-3 mb-0">
         <blockquote class="blockquote">
@@ -12,9 +12,7 @@
         <figure class="p-3 mb-0">
             <figcaption class="blockquote-footer mb-0 text-muted">
                 @foreach($card->tags as $tag)
-                    <cite>#<a href="{{ route('guest.tag-show', $tag->slug) }}">
-                            {{ ucfirst($tag->slug) }}
-                        </a></cite>
+                    <cite>#<a href="{{ route('guest.tag-show', $tag->slug) }}">{{ ucfirst($tag->slug) }}</a></cite>
                 @endforeach
             </figcaption>
         </figure>

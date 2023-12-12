@@ -26,6 +26,7 @@ class Card extends Model
     protected $fillable = [
         'id',
         'tip',
+        'slug',
         'explanation',
         'votes_rate',
         'votes_number',

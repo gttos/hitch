@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CategorySeeder::class,
-//            CardSeeder::class,
+            CardSeeder::class,
 //            TagSeeder::class,
 //            CardTagSeeder::class,
 //            RateSeeder::class
