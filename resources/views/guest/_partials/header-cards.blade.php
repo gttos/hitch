@@ -1,6 +1,6 @@
 <p class="m-0 p-0">
     <small class="text-muted m-3">
-        <a href="{{ route('guest.tip-show', $card->category->name) }}">
+        <a href="{{ route('guest.tip-show', $card->category->slug) }}">
             Tip para {{ ucfirst($card->category->name) }}
         </a>
     </small>
