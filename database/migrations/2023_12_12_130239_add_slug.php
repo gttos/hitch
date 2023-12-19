@@ -17,7 +17,7 @@ return new class extends Migration
         $card = \App\Models\Card::all();
         foreach ( $card as $car ){
             $car->update([
-                'slug' => Str::slug('papa aqlq')
+                'slug' => Str::slug($car->tip)
             ]);
         }
         $categories = \App\Models\Category::all();
