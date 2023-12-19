@@ -20,7 +20,8 @@ class CategoryFactory extends Factory
     {
         return [
             'id' => fake()->regexify('[A-Za-z0-9]{' . 26 . '}'),
-            'name' => fake()->word()
+            'name' => fake()->word(),
+            'slug' => fake()->slug()
         ];
     }
 }

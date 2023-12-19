@@ -15,6 +15,8 @@ return new class extends Migration
             $table->primary('id');
             $table->ulid('id');
             $table->string('name');
+//            $table->string('slug')->unique();
+//            $table->boolean('is_approved')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -24,7 +24,9 @@ class Category extends Model
     }
 
     protected $fillable = [
-        'name'
+        'name',
+        'slug',
+        'is_approved'
     ];
 
     public function cards() {

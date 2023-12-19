@@ -24,7 +24,8 @@ class Tag extends Model
 
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
+        'is_approved'
     ];
 
     public function cards() {

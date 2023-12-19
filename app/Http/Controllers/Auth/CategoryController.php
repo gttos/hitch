@@ -40,7 +40,8 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'slug' => Str::slug($request->name)
         ]);
 
         event(new Registered($category));
@@ -71,7 +72,8 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $category->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'slug' => Str::slug($request->name)
         ]);
 
         return Redirect::route('auth.category-index');

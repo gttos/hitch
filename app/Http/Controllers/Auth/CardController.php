@@ -46,6 +46,7 @@ class CardController extends Controller
 
         $card = Card::create([
             'tip' => $request->tip,
+            'slug' => Str::slug($request->tip),
             'explanation' => $request->explanation,
             'user_id' => auth()->user()->getAuthIdentifier(),
             'category_id' => $request->category_id,
@@ -90,6 +91,7 @@ class CardController extends Controller
 
         $card->update([
             'tip' => $request->tip,
+            'slug' => Str::slug($request->tip),
             'explanation' => $request->explanation,
             'category_id' => $request->category_id,
             'is_approved' => $request->is_approved
