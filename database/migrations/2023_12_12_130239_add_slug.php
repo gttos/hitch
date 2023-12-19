@@ -14,31 +14,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('cards', function (Blueprint $table) {
-            $table->string('slug')->nullable()->unique()->after('tip');
-        });
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('slug')->nullable()->unique()->after('name');
-            $table->boolean('is_approved')->default(0)->after('slug');
-        });
-        Schema::table('tags', function (Blueprint $table) {
-            $table->boolean('is_approved')->default(0)->after('slug');
-        });
         $card = \App\Models\Card::all();
         foreach ( $card as $car ){
-            $card->update([
-                'slug' => Str::slug($car->tip)
+            $car->update([
+                'slug' => Str::slug('papa aqlq')
             ]);
         }
         $categories = \App\Models\Category::all();
         foreach ( $categories as $category ){
-            $card->update([
+            $category->update([
                 'slug' => Str::slug($category->name)
             ]);
         }
         $tags = \App\Models\Tag::all();
         foreach ( $tags as $tag ){
-            $card->update([
+            $tag->update([
                 'slug' => Str::slug($tag->name)
             ]);
         }
